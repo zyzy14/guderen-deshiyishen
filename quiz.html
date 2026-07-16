@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>古人的深夜食堂 · 美食家人格测试</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <script src="js/theme.js"></script>
+  <div class="paper-grain"></div>
+
+  <header class="site-nav">
+    <div class="brand">古人的深夜食堂</div>
+    <nav class="nav-links">
+      <a href="welcome.html">关于本店</a>
+      <a href="sources.html">古籍课堂</a>
+      <a href="guide.html">玩法导览</a>
+      <a href="favorites.html">我的收藏</a>
+      <a href="index.html" class="btn btn-primary btn-sm">进入食堂</a>
+    </nav>
+  </header>
+
+  <main class="quiz-wrap">
+    <section id="quiz-start" class="quiz-screen">
+      <div class="seal">食<br/>格</div>
+      <h1 class="title">美食家人格测试</h1>
+      <p class="subtitle">— 六道小题，测测你与哪位古代美食家最投缘 —</p>
+      <div id="quiz-figures" class="quiz-figures"></div>
+      <p class="quiz-hint">袁枚 · 苏轼 · 贾思勰 · 李时珍 · 张翰，谁是你的本命食魂？</p>
+      <div class="cta-row">
+        <button id="quiz-begin" class="btn btn-primary btn-lg">开始测试 →</button>
+      </div>
+    </section>
+
+    <section id="quiz-play" class="quiz-screen" style="display:none">
+      <div class="quiz-progress">
+        <span id="q-progress">1 / 6</span>
+        <div class="bar"><i id="q-bar"></i></div>
+      </div>
+      <h2 id="q-text" class="quiz-q"></h2>
+      <div id="q-options" class="quiz-options"></div>
+      <div style="margin-top:16px">
+        <button id="q-prev" class="btn btn-ghost btn-sm">← 上一题</button>
+      </div>
+    </section>
+
+    <section id="quiz-result" class="quiz-screen" style="display:none">
+      <div id="result-card" class="result-card"></div>
+      <div class="cta-row" style="margin-top:22px">
+        <button id="quiz-retry" class="btn btn-ghost">再测一次</button>
+        <a href="index.html" class="btn btn-primary">进入深夜食堂</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>知识库考据自《齐民要术》《随园食单》《本草纲目》及苏轼、张翰等文人笔记。半文半白之辞为今人演绎，仅供下厨与把玩。</p>
+    <p class="foot-sub">古人的深夜食堂 · 方案二 · 离线可用 · 可接入大模型与 AI 绘图</p>
+    <p class="foot-nav"><a href="welcome.html">关于本店</a> · <a href="sources.html">古籍课堂</a> · <a href="guide.html">玩法导览</a> · <a href="index.html">进入食堂</a> · <a href="favorites.html">我的收藏</a></p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+  <div class="page-veil" aria-hidden="true"><div class="veil-seal">食</div></div>
+  <script src="js/anim.js"></script>
+</body>
+</html>

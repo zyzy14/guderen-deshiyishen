@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的收藏 · 古人的深夜食堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="paper-grain"></div>
+
+  <header class="site-nav">
+    <div class="brand">古人的深夜食堂</div>
+    <nav class="nav-links">
+      <a href="welcome.html">关于本店</a>
+      <a href="sources.html">古籍课堂</a>
+      <a href="guide.html">玩法导览</a>
+      <a href="index.html">进入食堂</a>
+      <a href="quiz.html">美食家人格</a>
+      <a href="favorites.html" class="btn btn-primary btn-sm" data-fav-count>我的收藏</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="seal">我的<br/>藏</div>
+    <h1 class="title">我的收藏</h1>
+    <p class="subtitle">— 深夜里，曾为君温过的一盏盏故味 —</p>
+  </section>
+
+  <main class="landing">
+    <section class="block">
+      <p class="lead">把心仪的古籍食谱收在此处，来日灶冷人静，循此重温旧味。</p>
+      <p class="body">点开任意一味，即见其水墨成图、古法步骤与本草注脚。卡片右上「藏」字朱印一点，再点即卸下收藏。</p>
+    </section>
+
+    <section class="block">
+      <h2 class="section-title">所藏之味</h2>
+      <div id="fav-list" class="fav-grid"></div>
+      <div id="fav-empty" class="fav-empty" style="display:none">
+        <div class="fav-empty-seal">空</div>
+        <p>君尚无所藏。且入深夜食堂，复一味古籍，将心头好者，朱印收之。</p>
+        <a href="index.html" class="btn btn-primary">去寻一味 →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>知识库考据自《齐民要术》《随园食单》《本草纲目》及苏轼、张翰等文人笔记。半文半白之辞为今人演绎，仅供下厨与把玩。</p>
+    <p class="foot-sub">古人的深夜食堂 · 我的收藏 · 离线可用</p>
+    <p class="foot-nav"><a href="index.html">进入食堂</a> · <a href="sources.html">古籍课堂</a> · <a href="guide.html">玩法导览</a> · <a href="quiz.html">美食家人格</a></p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/inkdish.js"></script>
+  <script src="js/favs.js"></script>
+  <script src="js/recipe-card.js"></script>
+  <script src="js/favorites.js"></script>
+  <div class="page-veil" aria-hidden="true"><div class="veil-seal">食</div></div>
+  <script src="js/anim.js"></script>
+</body>
+</html>

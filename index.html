@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>古人的深夜食堂 · 舌尖上的古籍</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <script src="js/theme.js"></script>
+  <div class="paper-grain"></div>
+
+  <header class="site-nav">
+    <div class="brand">古人的深夜食堂</div>
+    <nav class="nav-links">
+      <a href="welcome.html">关于本店</a>
+      <a href="sources.html">古籍课堂</a>
+      <a href="guide.html">玩法导览</a>
+      <a href="quiz.html">美食家人格</a>
+      <a href="favorites.html" class="btn btn-primary btn-sm" data-fav-count>我的收藏</a>
+    </nav>
+  </header>
+
+  <header class="cover">
+    <div class="cover-inner">
+      <div class="seal">深夜<br/>食堂</div>
+      <h1 class="title">古人的深夜食堂</h1>
+      <p class="subtitle">— 舌尖上的古籍 · 以冰箱平凡物，复千年灶上味 —</p>
+      <p class="epigraph">「治大国若烹小鲜。」今以《齐民要术》《随园食单》《本草纲目》之智，为君庖厨点睛。</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="kitchen">
+      <label class="kitchen-label" for="input">报上你冰箱里的食材</label>
+      <div class="input-row">
+        <textarea id="input" rows="2" placeholder="例如：鸡胸肉、豆腐、大葱"></textarea>
+        <div class="actions">
+          <button id="btn-cook" class="btn btn-primary">为我备席</button>
+          <button id="btn-random" class="btn btn-ghost">随机一味</button>
+        </div>
+      </div>
+      <div class="examples">
+        <span class="examples-hint">尝鲜：</span>
+        <button class="example" data-ing="鸡胸肉、豆腐、大葱">鸡胸肉·豆腐·大葱</button>
+        <button class="example" data-ing="鸡蛋、姜">鸡蛋·姜</button>
+        <button class="example" data-ing="剩米饭、胡萝卜">剩米饭·胡萝卜</button>
+        <button class="example" data-ing="土豆、番茄、辣椒">土豆·番茄·辣椒</button>
+        <button class="example" data-ing="羊肉、葱">羊肉·葱</button>
+      </div>
+      <p class="hint">提示：Ctrl/⌘ + Enter 亦可备席。古籍无载之料（辣椒、番茄、土豆等），自有「考据小笺」相告。</p>
+      <div id="first-visit-hint" class="first-visit-hint" style="display:none">初次登门？且报几味手边食材，<em>古人的深夜食堂</em>，这就为君温锅备席。</div>
+    </section>
+
+    <div id="cooking-loading" class="cooking-loading" style="display:none" aria-live="polite">
+      <div class="cooking-pot">
+        <svg viewBox="0 0 120 120" class="pot-svg"><ellipse cx="60" cy="72" rx="42" ry="36" fill="none" stroke="var(--ink-soft)" stroke-width="2"/><ellipse cx="60" cy="72" rx="34" ry="28" fill="none" stroke="var(--ink-soft)" stroke-width="1.2" opacity=".5"/><ellipse cx="60" cy="68" rx="18" ry="8" fill="none" stroke="var(--ember)" stroke-width="1.5" opacity=".6"/></svg>
+      </div>
+      <p class="cooking-text">灶上忙碌中，古法正在为您温锅备席……</p>
+      <div class="cooking-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <section id="result" class="result" style="display:none">
+      <div class="result-head">
+        <h2 class="result-title">今夜食单</h2>
+        <div class="flip-nav">
+          <button id="btn-prev" class="btn btn-mini" aria-label="上一味">‹ 上一味</button>
+          <button id="btn-next" class="btn btn-mini" aria-label="下一味">下一味 ›</button>
+        </div>
+      </div>
+      <div id="menu-chips" class="menu-chips"></div>
+      <article id="recipe-card" class="recipe-card"></article>
+      <div id="notes" class="notes" style="display:none"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>知识库考据自《齐民要术》《随园食单》《本草纲目》及苏轼、张翰等文人笔记。半文半白之辞为今人演绎，仅供下厨与把玩。</p>
+    <p class="foot-sub">古人的深夜食堂 · 方案二 · 离线可用 · 可接入大模型与 AI 绘图</p>
+    <p class="foot-nav"><a href="welcome.html">关于本店</a> · <a href="sources.html">古籍课堂</a> · <a href="guide.html">玩法导览</a> · <a href="quiz.html">美食家人格</a> · <a href="favorites.html" data-fav-count>我的收藏</a></p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/inkdish.js"></script>
+  <script src="js/favs.js"></script>
+  <script src="js/recipe-card.js"></script>
+  <script src="js/stove-transition.js"></script>
+  <script src="js/app.js"></script>
+  <div class="page-veil" aria-hidden="true"><div class="veil-seal">食</div></div>
+  <script src="js/anim.js"></script>
+</body>
+</html>

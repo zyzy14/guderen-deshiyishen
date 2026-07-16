@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>古人的深夜食堂 · 封面</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#efe5d1; --paper-2:#e2d4ba; --ink:#2e2823; --ink-soft:#6a5d4c;
+    --cinnabar:#a8332b; --celadon:#5f7a64; --gold:#bd8a3e; --ember:#c8642e;
+    --wood:#8a6a44; --line:#c9b896;
+    --serif:"Noto Serif SC","Songti SC","STSong",serif;
+    --brush:"Ma Shan Zheng","Noto Serif SC",cursive;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:var(--serif); color:var(--ink);
+    background:
+      radial-gradient(60% 50% at 50% 42%, rgba(200,100,46,.20) 0%, rgba(200,100,46,0) 70%),
+      radial-gradient(120% 90% at 50% -8%, #f7efdd 0%, var(--paper) 46%, var(--paper-2) 100%);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  /* 纸纹 + 暗角 */
+  .grain{position:absolute; inset:0; pointer-events:none; opacity:.5; z-index:6;
+    background-image:
+      radial-gradient(rgba(120,84,40,.07) 1px, transparent 1px),
+      radial-gradient(rgba(120,84,40,.05) 1px, transparent 1px),
+      repeating-linear-gradient(92deg, rgba(120,84,40,.025) 0 2px, transparent 2px 7px);
+    background-size:7px 7px, 13px 13px, auto; background-position:0 0,3px 4px,0 0; mix-blend-mode:multiply;}
+  .vignette{position:absolute; inset:0; pointer-events:none; z-index:5;
+    background:radial-gradient(120% 120% at 50% 45%, transparent 55%, rgba(45,30,15,.28) 100%);}
+
+  .frame{position:relative; width:1920px; height:1080px; overflow:hidden;}
+  .border{position:absolute; inset:34px; border:2px solid rgba(138,106,68,.85); border-radius:14px;
+    box-shadow:inset 0 0 0 6px rgba(239,229,209,.5), inset 0 0 0 8px rgba(138,106,68,.35); z-index:4;}
+
+  /* 灯笼 */
+  .lantern{position:absolute; top:120px; width:120px; height:200px; z-index:2;}
+  .lantern.l{left:200px;} .lantern.r{right:200px;}
+  .lantern .glow{position:absolute; inset:-60px; border-radius:50%;
+    background:radial-gradient(circle, rgba(224,130,62,.55) 0%, rgba(224,130,62,0) 68%);}
+  .lantern .body{position:absolute; left:18px; top:24px; width:84px; height:140px; border-radius:42px;
+    background:linear-gradient(180deg,#d8463a,#a8332b);
+    box-shadow:inset 0 0 22px rgba(255,200,140,.45), 0 0 26px rgba(200,80,50,.5);
+    border-top:5px solid #7e241d; border-bottom:5px solid #7e241d;}
+  .lantern .body::before{content:""; position:absolute; left:50%; top:8px; bottom:8px; width:2px;
+    transform:translateX(-50%); background:rgba(255,225,190,.5);}
+  .lantern .cap{position:absolute; left:34px; top:14px; width:52px; height:14px; border-radius:4px; background:#5a4128;}
+  .lantern .tassel{position:absolute; left:50%; top:164px; width:3px; height:34px; transform:translateX(-50%);
+    background:var(--gold); box-shadow:0 0 8px rgba(189,138,62,.7);}
+
+  /* 内容 */
+  .content{position:relative; z-index:3; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; padding:0 220px;}
+  .kicker{font-family:var(--serif); color:var(--celadon); letter-spacing:.5em; font-size:22px;
+    font-weight:600; margin-bottom:6px; text-indent:.5em;}
+  .title-wrap{position:relative; display:inline-block;}
+  .title{font-family:var(--brush); font-size:128px; line-height:1; letter-spacing:.06em; color:var(--ink);
+    text-shadow:0 2px 0 rgba(255,255,255,.45);}
+  .seal{position:absolute; top:6px; right:-86px; width:78px; height:78px; background:var(--cinnabar);
+    color:var(--paper); font-family:var(--serif); font-weight:700; font-size:25px; line-height:1.12;
+    display:flex; align-items:center; justify-content:center; text-align:center; border-radius:8px;
+    box-shadow:0 3px 12px rgba(158,43,37,.4); transform:rotate(-5deg); letter-spacing:2px;}
+
+  .subtitle{margin-top:18px; font-size:26px; color:var(--celadon); letter-spacing:.16em;}
+  .epigraph{margin-top:22px; font-size:18px; color:var(--ink-soft); max-width:760px; text-align:center;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 26px; line-height:1.9;}
+
+  /* 灶台场景 */
+  .stove{margin-top:10px; width:600px; height:500px; position:relative;}
+  .stove svg{width:100%; height:100%; display:block; overflow:visible;}
+  .st-halo{position:absolute; left:50%; top:46%; width:520px; height:520px; transform:translate(-50%,-50%);
+    border-radius:50%; background:radial-gradient(circle, rgba(200,100,46,.22) 0%, rgba(200,100,46,0) 66%);
+    z-index:-1;}
+  /* 火焰与蒸汽（静态呈现于活跃态） */
+  .st-flame{transform-origin:180px 286px;}
+  .st-ember-glow{opacity:.95;}
+  .st-steam{opacity:.9;}
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="border"></div>
+
+    <div class="lantern l"><div class="glow"></div><div class="cap"></div><div class="body"></div><div class="tassel"></div></div>
+    <div class="lantern r"><div class="glow"></div><div class="cap"></div><div class="body"></div><div class="tassel"></div></div>
+
+    <div class="content">
+      <div class="kicker">舌尖上的古籍</div>
+      <div class="title-wrap">
+        <div class="title">古人的深夜食堂</div>
+        <div class="seal">深夜<br/>食堂</div>
+      </div>
+      <div class="subtitle">— 以冰箱平凡物，复千年灶上味 —</div>
+
+      <div class="stove">
+        <div class="st-halo"></div>
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="stStone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3a2a"/><stop offset="1" stop-color="#2a1d12"/></linearGradient>
+            <radialGradient id="stEmber" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(255,184,96,.95)"/><stop offset="55%" stop-color="rgba(224,130,62,.45)"/><stop offset="100%" stop-color="rgba(224,130,62,0)"/></radialGradient>
+            <linearGradient id="stFlameOut" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c8473c"/><stop offset="1" stop-color="#e0823e"/></linearGradient>
+            <linearGradient id="stFlameMid" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e0823e"/><stop offset="1" stop-color="#f0a44a"/></linearGradient>
+            <linearGradient id="stFlameCore" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffd06a"/><stop offset="1" stop-color="#ffe6a8"/></linearGradient>
+            <linearGradient id="stPot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a2e"/><stop offset="1" stop-color="#36240f"/></linearGradient>
+            <linearGradient id="stLid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5636"/><stop offset="1" stop-color="#46301d"/></linearGradient>
+            <linearGradient id="stSteam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="rgba(255,240,210,0)"/><stop offset="50%" stop-color="rgba(255,240,210,.85)"/><stop offset="100%" stop-color="rgba(255,240,210,0)"/></linearGradient>
+          </defs>
+          <g class="st-hearth">
+            <rect x="56" y="288" width="248" height="58" rx="16" fill="url(#stStone)"/>
+            <ellipse cx="180" cy="292" rx="80" ry="18" fill="#160f09"/>
+            <ellipse cx="180" cy="290" rx="72" ry="14" fill="#0c0805"/>
+          </g>
+          <g class="st-fire">
+            <circle class="st-ember-glow" cx="180" cy="280" r="48" fill="url(#stEmber)"/>
+            <path class="st-flame f1" d="M180,286 C150,256 166,222 180,202 C194,222 210,256 180,286 Z" fill="url(#stFlameOut)"/>
+            <path class="st-flame f2" d="M180,284 C162,260 170,234 180,218 C190,234 198,260 180,284 Z" fill="url(#stFlameMid)"/>
+            <path class="st-flame f3" d="M180,282 C168,264 172,244 180,232 C188,244 192,264 180,282 Z" fill="url(#stFlameCore)"/>
+          </g>
+          <g class="st-pot-grp">
+            <path d="M114,240 A66,42 0 0 0 246,240 Z" fill="url(#stPot)" stroke="#2e2014" stroke-width="2"/>
+            <path d="M126,262 Q180,284 234,262" fill="none" stroke="rgba(255,210,150,.25)" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="180" cy="240" rx="66" ry="14" fill="#241910" stroke="#46301d" stroke-width="2"/>
+            <ellipse cx="180" cy="238" rx="54" ry="10" fill="#160f09"/>
+            <path d="M114,242 q-18,3 -18,17 q0,11 13,11" fill="none" stroke="#46301d" stroke-width="5" stroke-linecap="round"/>
+            <path d="M246,242 q18,3 18,17 q0,11 -13,11" fill="none" stroke="#46301d" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <g class="st-lid-grp">
+            <path d="M120,240 Q180,182 240,240 Z" fill="url(#stLid)" stroke="#46301d" stroke-width="2"/>
+            <path d="M132,232 Q180,196 228,232" fill="none" stroke="rgba(255,210,150,.22)" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="180" cy="240" rx="60" ry="10" fill="#160f09" opacity=".45"/>
+            <circle cx="180" cy="184" r="7.5" fill="#5a4128" stroke="#2e2014" stroke-width="1.5"/>
+          </g>
+          <g class="st-steam">
+            <path d="M168,182 q-14,-20 2,-38 q14,-16 0,-34" fill="none" stroke="url(#stSteam)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M192,182 q14,-20 -2,-38 q-14,-16 0,-34" fill="none" stroke="url(#stSteam)" stroke-width="6" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="epigraph">「治大国若烹小鲜。」今以《齐民要术》《随园食单》《本草纲目》之智，为君庖厨点睛。</div>
+    </div>
+
+    <div class="vignette"></div>
+    <div class="grain"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>古籍里的中国味道 · 古人的深夜食堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* —— 古籍科普页专属样式（作用域：.src-page） —— */
+    .src-page .tl{position:relative; max-width:880px; margin:6px auto 8px; padding:8px 0 4px;}
+    .src-page .tl::before{content:""; position:absolute; left:50%; top:30px; bottom:30px; width:2px; background:linear-gradient(var(--celadon),var(--gold)); transform:translateX(-1px);}
+    .src-page .tl-row{display:flex; align-items:center; gap:14px; margin:0 0 14px; position:relative;}
+    .src-page .tl-row:nth-child(odd){flex-direction:row-reverse; text-align:right;}
+    .src-page .tl-dot{flex:0 0 16px; width:16px; height:16px; border-radius:50%; background:var(--cinnabar); border:3px solid var(--paper); box-shadow:0 0 0 2px var(--cinnabar); z-index:1;}
+    .src-page .tl-card{flex:1; background:linear-gradient(180deg,#f7eed9,#ecdfc2); border:1px solid var(--wood); border-radius:10px; padding:10px 14px; box-shadow:0 3px 12px rgba(90,60,30,.09), inset 0 0 0 2px rgba(255,250,238,.32);}
+    .src-page .tl-era{font-family:var(--brush); color:var(--cinnabar); font-size:17px; letter-spacing:.06em;}
+    .src-page .tl-name{font-size:15px; color:var(--ink); margin-left:6px;}
+    .src-page .tl-sub{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+
+    .src-page .src-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:6px;}
+    .src-page .src-card{background:linear-gradient(180deg,#f7eed9,#ecdfc2); border:1px solid var(--wood); border-radius:12px; padding:20px 20px 18px; box-shadow:0 5px 18px rgba(90,60,30,.11), inset 0 0 0 3px rgba(255,250,238,.30); transition:.18s; position:relative; overflow:hidden;}
+    .src-page .src-card:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(90,70,40,.16);}
+    .src-page .src-card::before{content:""; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,var(--cinnabar),var(--ember));}
+    .src-page .src-book{font-family:var(--brush); font-size:30px; color:var(--ink); margin:2px 0 2px; letter-spacing:.04em;}
+    .src-page .src-meta{font-size:13px; color:var(--cinnabar); letter-spacing:.06em; margin-bottom:10px;}
+    .src-page .src-meta b{color:var(--gold); font-weight:600;}
+    .src-page .src-body{font-size:14.5px; color:var(--ink-soft); line-height:1.85;}
+    .src-page .src-body em{color:var(--celadon); font-style:normal; font-weight:600;}
+    .src-page .rec-links{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px dashed var(--line);}
+    .src-page .rec-links span{font-size:12.5px; color:var(--ink-soft); width:100%; margin-bottom:2px; letter-spacing:.05em;}
+    .src-page .rec-link{font-family:var(--serif); font-size:13.5px; text-decoration:none; color:var(--cinnabar); border:1px solid rgba(158,43,37,.4); background:rgba(158,43,37,.06); padding:5px 12px; border-radius:16px; transition:.18s;}
+    .src-page .rec-link:hover{background:var(--cinnabar); color:var(--paper); border-color:var(--cinnabar);}
+
+    .src-page .person{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start; background:linear-gradient(180deg,#f7eed9,#ecdfc2); border:1px solid var(--wood); border-radius:12px; padding:20px; box-shadow:0 5px 18px rgba(90,60,30,.11), inset 0 0 0 3px rgba(255,250,238,.30); margin-bottom:16px;}
+    .src-page .person-seal{flex:0 0 72px; width:72px; height:72px; border-radius:9px; background:var(--cinnabar); color:var(--paper); font-family:var(--brush); font-size:40px; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 12px rgba(158,43,37,.32); transform:rotate(-3deg);}
+    .src-page .person h3{font-family:var(--brush); font-size:26px; margin:0 0 2px; color:var(--ink);}
+    .src-page .person .p-meta{font-size:13px; color:var(--cinnabar); letter-spacing:.05em; margin-bottom:8px;}
+    .src-page .person p{font-size:14.5px; color:var(--ink-soft); line-height:1.85; margin:0 0 8px;}
+    .src-page .person p:last-child{margin-bottom:0;}
+    .src-page .person .quote{font-style:italic; color:var(--celadon); border-left:3px solid var(--celadon); padding-left:12px; background:rgba(91,122,111,.06); border-radius:0 8px 8px 0; padding:8px 12px;}
+
+    .src-page .xj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:6px;}
+    .src-page .xj-card{background:linear-gradient(180deg,#f7efdb,#efe5cb); border:1px solid var(--wood); border-left:4px solid var(--ember); border-radius:8px; padding:14px 16px;}
+    .src-page .xj-card h4{margin:0 0 6px; font-size:16px; color:var(--ink);}
+    .src-page .xj-card h4 small{font-size:12px; color:var(--cinnabar); font-weight:400; margin-left:6px; letter-spacing:.04em;}
+    .src-page .xj-card p{margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.75;}
+
+    @media (max-width:720px){
+      .src-page .person{grid-template-columns:1fr; text-align:center;}
+      .src-page .person-seal{margin:0 auto;}
+      .src-page .person .quote{text-align:left;}
+      .src-page .tl-row, .src-page .tl-row:nth-child(odd){flex-direction:column; align-items:flex-start; text-align:left;}
+      .src-page .tl::before{left:7px;}
+    }
+  </style>
+</head>
+<body class="src-page">
+  <script src="js/theme.js"></script>
+  <div class="paper-grain"></div>
+
+  <header class="site-nav">
+    <div class="brand">古人的深夜食堂</div>
+    <nav class="nav-links">
+      <a href="welcome.html">关于本店</a>
+      <a href="guide.html">玩法导览</a>
+      <a href="sources.html" class="btn btn-ghost btn-sm" style="border-color:var(--cinnabar);color:var(--cinnabar);">古籍课堂</a>
+      <a href="quiz.html">美食家人格</a>
+      <a href="favorites.html">我的收藏</a>
+      <a href="index.html" class="btn btn-primary btn-sm">进入食堂</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="seal">古籍<br/>食单</div>
+    <h1 class="title">古籍里的中国味道</h1>
+    <p class="subtitle">— 从《齐民要术》到《山家清供》· 一本写给厨房的千年食典 —</p>
+    <p class="epigraph">中国人对"吃"的讲究，早在两千年前的简牍纸卷里，就已落笔成章。</p>
+  </section>
+
+  <main class="landing">
+    <section class="src-filter">
+      <input class="src-search" type="text" placeholder="搜典籍、文人、菜名…" />
+      <div class="src-chips">
+        <button class="chip active" data-f="all">全部</button>
+        <button class="chip" data-f="qimin">齐民要术</button>
+        <button class="chip" data-f="suiyuan">随园食单</button>
+        <button class="chip" data-f="bencao">本草纲目</button>
+        <button class="chip" data-f="shanjiqing">山家清供</button>
+        <button class="chip" data-f="xianqing">闲情偶寄</button>
+        <button class="chip" data-f="zhoupu">粥谱</button>
+        <button class="chip" data-f="yunlin">云林堂</button>
+        <button class="chip" data-f="donghua">东京梦华录</button>
+        <button class="chip" data-f="sushi">苏轼</button>
+        <button class="chip" data-f="luyou">陆游</button>
+        <button class="chip" data-f="zhanghan">张翰</button>
+      </div>
+    </section>
+    <!-- 引言 -->
+    <section class="block">
+      <p class="lead">本页带你速览「古人的深夜食堂」背后的几部关键典籍，与几位爱吃的文人。</p>
+      <p class="body">项目里那四十余道食谱，并非凭空杜撰，而是逐道考据自农书、食单、药典与文人笔记——从北魏《齐民要术》到清人《粥谱》《闲情偶寄》，由宋人《山家清供》《东京梦华录》及苏轼、陆游诸家。读懂这些书，你报出的每一样家常食材，背后都站着一段实实在在的饮食传统。</p>
+    </section>
+
+    <!-- 时间轴 -->
+    <section class="block">
+      <h2 class="section-title">一脉食香 · 千年脉络</h2>
+      <div class="tl">
+        <div class="tl-row" data-author="zhanghan">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">西晋</div>
+            <div class="tl-name">张翰 · 莼鲈之思</div>
+            <div class="tl-sub">《世说新语》载其因秋风思吴中菰菜、莼羹、鲈鱼脍而辞官</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="qimin">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">北魏</div>
+            <div class="tl-name">贾思勰 ·《齐民要术》</div>
+            <div class="tl-sub">约公元 533—544 年成书，现存最早的农业百科全书</div>
+          </div>
+        </div>
+        <div class="tl-row" data-author="sushi">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">北宋</div>
+            <div class="tl-name">苏轼 · 东坡肉与东坡羹</div>
+            <div class="tl-sub">作《猪肉颂》《老饕赋》，把贬谪生活吃成千古风流</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="bencao">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">明</div>
+            <div class="tl-name">李时珍 ·《本草纲目》</div>
+            <div class="tl-sub">1578 年成书，收药近一千九百种，亦是一部"食疗"宝典</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="shanjiqing">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">南宋</div>
+            <div class="tl-name">林洪 ·《山家清供》</div>
+            <div class="tl-sub">一菜一名、一诗一典，记清雅素食与山林风味，文人吃的是风雅</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="donghua">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">南宋</div>
+            <div class="tl-name">孟元老 ·《东京梦华录》</div>
+            <div class="tl-sub">追忆汴京繁华，录市井夜市炙、腌、粥饼之属，最是"深夜食堂"前身</div>
+          </div>
+        </div>
+        <div class="tl-row" data-author="luyou">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">南宋</div>
+            <div class="tl-name">陆游 · 食粥致神仙</div>
+            <div class="tl-sub">作《食粥》诗"只将食粥致神仙"，把一碗淡粥吃成养生哲学</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="yunlin">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">元</div>
+            <div class="tl-name">倪瓒 ·《云林堂饮食制度集》</div>
+            <div class="tl-sub">文人雅士的私房食单，清鲜尚洁，"云林鹅"遂成一时名馔</div>
+          </div>
+        </div>
+        <div class="tl-row" data-author="xianqing">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">清</div>
+            <div class="tl-name">李渔 ·《闲情偶寄·饮馔部》</div>
+            <div class="tl-sub">主张"蔬食第一"，以笋为"蔬食中之领袖"，最懂孤行之鲜</div>
+          </div>
+        </div>
+        <div class="tl-row" data-src="suiyuan">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-era">清</div>
+            <div class="tl-name">袁枚 ·《随园食单》</div>
+            <div class="tl-sub">1792 年刊行，中国第一部成体系的"文人菜谱"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 典籍 -->
+    <section class="block">
+      <h2 class="section-title">群书 · 食事之源</h2>
+      <div class="src-grid">
+
+        <article class="src-card" data-src="qimin">
+          <div class="src-book">齐民要术</div>
+          <div class="src-meta">作者 <b>贾思勰</b> · 北魏（约 533—544 年）</div>
+          <div class="src-body">
+            现存最早、最完整的农学巨著，被誉为"中国古代农业百科全书"。全书十卷九十二篇，<em>卷七至卷九</em>专讲食品加工——炙、脯、酱、菹、羹、粥、饼、醴酪，乃至酿酒造醋，皆有细法。今人复刻的"胡炮肉""蒸缹鸡"即出于此。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=羊肉">胡炮肉</a>
+            <a class="rec-link" href="index.html?ing=杏">杏酪粥</a>
+            <a class="rec-link" href="index.html?ing=鸡">蒸缹鸡</a>
+            <a class="rec-link" href="index.html?ing=白菜">熟菘</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="suiyuan">
+          <div class="src-book">随园食单</div>
+          <div class="src-meta">作者 <b>袁枚</b> · 清（乾隆五十七年 / 1792 刊行）</div>
+          <div class="src-body">
+            中国历史上第一部真正成体系的"文人菜谱"。分<em>须知单、戒单、海鲜单、江鲜单、特牲单、羽族单、水族单、杂素菜单、饭粥单、茶酒单</em>等十四单，记菜三百余道。袁枚有"耳餐""目食"之戒——反对铺张，主张适口者为珍。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=豆腐">蒋侍郎豆腐</a>
+            <a class="rec-link" href="index.html?ing=虾">醉虾</a>
+            <a class="rec-link" href="index.html?ing=鸡">捶鸡 · 鸡粥</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="bencao">
+          <div class="src-book">本草纲目</div>
+          <div class="src-meta">作者 <b>李时珍</b> · 明（1578 成书 · 1596 金陵初刊）</div>
+          <div class="src-body">
+            古代药物学集大成之作，亦是一部"食疗"宝典。五十二卷、收药近一千九百种，<em>谷部、菜部、果部、兽部、禽部、鳞介部</em>中无数可食之物，皆详其性味、主治。今人复刻的诸般药粥，皆本其"药食同源"之旨。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=百合">百合粥</a>
+            <a class="rec-link" href="index.html?ing=山药">山药粥</a>
+            <a class="rec-link" href="index.html?ing=枸杞">枸杞粥</a>
+            <a class="rec-link" href="index.html?ing=莲子">莲子羹</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="shanjiqing">
+          <div class="src-book">山家清供</div>
+          <div class="src-meta">作者 <b>林洪</b> · 南宋（约 13 世纪）</div>
+          <div class="src-body">
+            文人清供食谱之冠，<em>一菜一名、一诗一典</em>。记雪天拨霞供（火锅之雏形）、蟹酿橙、碧涧羹、傍林鲜等山林风味，把"吃"写成风雅。与李渔"蔬食第一"一脉相承，是本项目素食与清供菜式的重要来源。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=兔">拨霞供</a>
+            <a class="rec-link" href="index.html?ing=蟹">蟹酿橙</a>
+            <a class="rec-link" href="index.html?ing=藕">金玉羹</a>
+            <a class="rec-link" href="index.html?ing=笋">傍林鲜</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="zhoupu">
+          <div class="src-book">粥谱</div>
+          <div class="src-meta">作者 <b>曹庭栋</b> · 清（乾隆年间）</div>
+          <div class="src-body">
+            一部专讲粥的食书，收粥方百余，<em>以粥养身</em>。分谷类、蔬类、果类、药类，详其性味主治。芡实、苏子、杏仁、胡桃、菊花诸粥，皆本其法——深夜一瓯，最是寻常人家的温润慰藉。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=芡实">芡实粥</a>
+            <a class="rec-link" href="index.html?ing=苏子">苏子粥</a>
+            <a class="rec-link" href="index.html?ing=杏">杏仁粥</a>
+            <a class="rec-link" href="index.html?ing=菊花">菊花粥</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="yunlin">
+          <div class="src-book">云林堂饮食制度集</div>
+          <div class="src-meta">作者 <b>倪瓒</b> · 元（1301—1374）</div>
+          <div class="src-body">
+            元四家之一倪瓒的私房食单，<em>尚清鲜、重本味</em>。所记"云林鹅"制法精到，后世奉为名馔；烧萝卜诸式，皆文人治庖的雅洁范本。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=鹅">云林鹅</a>
+            <a class="rec-link" href="index.html?ing=萝卜">烧萝卜</a>
+          </div>
+        </article>
+
+        <article class="src-card" data-src="donghua">
+          <div class="src-book">东京梦华录</div>
+          <div class="src-meta">作者 <b>孟元老</b> · 南宋（追忆北宋汴京）</div>
+          <div class="src-body">
+            追忆徽宗朝汴京繁华，<em>市井夜市</em>的饮食百态尽收笔底：旋炙猪皮肉、洗手蟹、灌肺、爊物……街边即炙即食的烟火气，正是"深夜食堂"最古早的模样。
+          </div>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=蟹">洗手蟹</a>
+            <a class="rec-link" href="index.html?ing=猪肉">旋炙猪肉</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 文人食事 -->
+    <section class="block">
+      <h2 class="section-title">文人食事 · 老饕列传</h2>
+
+      <div class="person" data-author="sushi">
+        <div class="person-seal">苏</div>
+        <div>
+          <h3>苏轼</h3>
+          <div class="p-meta">北宋 · 1037—1101 · 号东坡居士，自号"老饕"</div>
+          <p>贬谪黄州时写《猪肉颂》："净洗铛，少著水，柴头罨烟焰不起。待他自熟莫催他，火候足时他自美。"——<em>东坡肉</em>由此得名，是把困顿吃成风流的范本。</p>
+          <p>又创<em>东坡羹</em>，以蔓菁、芦菔（萝卜）煮而不用鱼肉，清贫中见真味；另作《老饕赋》《菜羹赋》，谈吃谈得理直气壮。一句"无竹令人俗，无肉使人瘦"，道尽文人的饮食脾性。</p>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=猪肉">东坡肉</a>
+            <a class="rec-link" href="index.html?ing=萝卜">东坡羹</a>
+            <a class="rec-link" href="index.html?ing=白菜">熟菘</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person" data-author="zhanghan">
+        <div class="person-seal">张</div>
+        <div>
+          <h3>张翰</h3>
+          <div class="p-meta">西晋 · 字季鹰 · 一句"莼鲈之思"成千古归隐典故</div>
+          <p>据《世说新语·识鉴》：张翰在洛阳为官，秋风起，忽念吴中菰菜、莼羹、鲈鱼脍，叹曰：</p>
+          <p class="quote">"人生贵得适意尔，何能羁宦数千里以要名爵！"</p>
+          <p>遂命驾归乡。一碗<em>莼鲈羹</em>，吃的是故乡与自由——这是中国文人辞官史上最"好吃"的理由。</p>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=莼菜">莼鲈羹</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person" data-author="xianqing">
+        <div class="person-seal">渔</div>
+        <div>
+          <h3>李渔</h3>
+          <div class="p-meta">清 · 1611—1680 · 字笠翁，《闲情偶寄》写尽生活雅趣</div>
+          <p>《闲情偶寄·饮馔部》开宗明义"<em>蔬食第一</em>"——于肉食之上，独推笋、蕈、莼、菜，谓笋为"蔬食中之领袖"，且"从来至美之物，皆利于孤行"。</p>
+          <p>他不信"有味者使之出，无味者使之入"的俗套，宁可白水一煮，存其本鲜。一份<em>白水笋</em>、一碟<em>醋拌萝卜丝</em>，便是文人治庖的清通。</p>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=笋">白水笋</a>
+            <a class="rec-link" href="index.html?ing=蕈">素蕈</a>
+            <a class="rec-link" href="index.html?ing=萝卜">醋拌萝卜丝</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person" data-author="luyou">
+        <div class="person-seal">陆</div>
+        <div>
+          <h3>陆游</h3>
+          <div class="p-meta">南宋 · 1125—1210 · 号放翁，诗万首，亦好谈食养</div>
+          <p>放翁晚年尤重食养，作《食粥》诗：</p>
+          <p class="quote">"世人个个学长年，不悟长年在目前。我得宛丘平易法，只将食粥致神仙。"</p>
+          <p>一碗淡粥，在他笔下成了养生大道。又爱笋、爱荠、爱素羹——与苏轼、李渔同是"以吃写心"的文人。<em>食粥</em>一味，最宜深夜独啜。</p>
+          <div class="rec-links">
+            <span>本店复刻 →</span>
+            <a class="rec-link" href="index.html?ing=米">食粥</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 考据小笺 -->
+    <section class="block">
+      <h2 class="section-title">考据小笺 · 冷知识</h2>
+      <div class="xj-grid">
+        <div class="xj-card">
+          <h4>"食单"二字 <small>袁枚用得最妙</small></h4>
+          <p>不是菜谱，是"菜单"——一本可以慢慢翻的闲书。袁枚写它，意在"知味"而非炫技。</p>
+        </div>
+        <div class="xj-card">
+          <h4>古代版"叫花鸡" <small>胡炮肉</small></h4>
+          <p>《齐民要术》载：把羊肉馅塞进羊肚，埋进烧热的羊粪火里煨熟。是南北朝的野趣炙法。</p>
+        </div>
+        <div class="xj-card">
+          <h4>李时珍论粥 <small>食疗之良</small></h4>
+          <p>称"粥极柔腻，与肠胃相得，最为饮食之良"——一碗药粥，养的是寻常人家的身子。</p>
+        </div>
+        <div class="xj-card">
+          <h4>最"好吃"的辞职 <small>张翰</small></h4>
+          <p>为口莼菜鲈鱼弃官归乡，成就成语"莼鲈之思"。乡愁，原来是可以下筷的。</p>
+        </div>
+        <div class="xj-card">
+          <h4>古人的夜市 <small>东京梦华录</small></h4>
+          <p>南宋人追忆汴京，夜市"直至三更尽，才五更又复开张"——旋炙猪肉、洗手蟹就着灯火即炙即食，正是千年前的深夜食堂。</p>
+        </div>
+        <div class="xj-card">
+          <h4>文人的鹅 <small>云林鹅</small></h4>
+          <p>画家倪瓒好洁亦好吃，所记烧鹅法精到，后世名之"云林鹅"。一盏清供，连荤腥也吃得雅。</p>
+        </div>
+        <div class="xj-card">
+          <h4>已入食单 <small>群贤毕至</small></h4>
+          <p>李渔《闲情偶寄》、林洪《山家清供》、曹庭栋《粥谱》、倪瓒《云林堂》、孟元老《东京梦华录》及陆游诗，皆已收入本店知识库，可逐一复刻。</p>
+        </div>
+        <div class="xj-card">
+          <h4>半文半白 <small>今人演绎</small></h4>
+          <p>本店引文皆有出处，而"深夜独食者"的那封短信，是今人为古法添的体温。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block cta-block">
+      <a href="index.html" class="btn btn-primary btn-lg">读罢古籍，不如下厨 →</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>知识库考据自《齐民要术》《随园食单》《本草纲目》《山家清供》《闲情偶寄》《粥谱》《云林堂饮食制度集》《东京梦华录》及苏轼、张翰、陆游等文人笔记。半文半白之辞为今人演绎，仅供下厨与把玩。</p>
+    <p class="foot-sub">古人的深夜食堂 · 古籍课堂 · 离线可用 · 可接入大模型与 AI 绘图</p>
+    <p class="foot-nav"><a href="index.html">进入食堂</a> · <a href="welcome.html">关于本店</a> · <a href="guide.html">玩法导览</a> · <a href="quiz.html">美食家人格</a> · <a href="favorites.html">我的收藏</a></p>
+  </footer>
+  <div class="page-veil" aria-hidden="true"><div class="veil-seal">食</div></div>
+  <script src="js/sources-filter.js"></script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

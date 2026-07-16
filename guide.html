@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>古人的深夜食堂 · 玩法导览</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <script src="js/theme.js"></script>
+  <div class="paper-grain"></div>
+
+  <header class="site-nav">
+    <div class="brand">古人的深夜食堂</div>
+    <nav class="nav-links">
+      <a href="welcome.html">关于本店</a>
+      <a href="sources.html">古籍课堂</a>
+      <a href="quiz.html">美食家人格</a>
+      <a href="favorites.html">我的收藏</a>
+      <a href="index.html" class="btn btn-primary btn-sm">进入食堂</a>
+    </nav>
+  </header>
+
+  <section class="hero hero-sm">
+    <h1 class="title" style="font-size:clamp(34px,6vw,56px)">玩法导览</h1>
+    <p class="subtitle">— 七步成馔，从冰箱到一锅人间烟火 —</p>
+  </section>
+
+  <main class="landing">
+    <section class="block">
+      <h2 class="section-title">七步成馔</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-no">壹</span>
+          <div>
+            <h3>报上食材</h3>
+            <p>在输入框写下冰箱现有物，如"鸡胸肉、豆腐、大葱"，支持逗号、顿号、空格分隔；也能识别"鸡胸肉→鸡""大葱→葱"等古今异名。嫌麻烦？直接点页面上的示例更省事。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">贰</span>
+          <div>
+            <h3>古法匹配</h3>
+            <p>系统用同义词归一 + 主料加权打分，从 22 道古籍食谱里挑出最合你手头食材的古方，并排好可翻页的"今夜食单"。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">叁</span>
+          <div>
+            <h3>半文白秘籍</h3>
+            <p>为这道菜生成一段治愈系文案——开场引子点出你与古法的缘分，古法步骤让现代人能照做，再附《本草纲目》性味注、原典引文，与一句题跋收尾。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">肆</span>
+          <div>
+            <h3>水墨成图</h3>
+            <p>程序化生成一碗水墨风成品图：青瓷 / 白瓷碗、笔触菜肴、袅袅热气、竖排菜名与一方红印章。无需任何绘图 API，离线即得。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">伍</span>
+          <div>
+            <h3>考据小笺</h3>
+            <p>若你用了辣椒、番茄、土豆、胡萝卜等"穿越食材"，小笺会温柔提醒：辣椒是明万历才入中土，古人以花椒、姜取辛——长知识又不违和。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">陆</span>
+          <div>
+            <h3>翻页与食单</h3>
+            <p>一道不合心意？左右翻页，或在"今夜食单"里切换，总有一味合你今夜的心境。</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-no">柒</span>
+          <div>
+            <h3>大模型润色（已接入）</h3>
+            <p>本店已接入 DeepSeek：你报上食材，开场引子、古法步骤与收尾题跋便由大模型实时重写，比离线模板更贴合今夜心境。想换服务商？在 <code>.env</code> 里改 <code>LLM_PROVIDER</code> 即可（通义千问 / OpenAI / 本地 Ollama 皆支持），界面随即亮起"✦ 大模型已接入"。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block">
+      <h2 class="section-title">技术亮点</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <h3>前端</h3>
+          <p>纯静态 + 国风视觉：宣纸纹理、朱砂红、青瓷绿、毛笔字体，翻页动效。</p>
+        </div>
+        <div class="tech-card">
+          <h3>知识库</h3>
+          <p>recipes.json 单一数据源：22 道食谱、93 条古今同义词、9 条穿越考据。</p>
+        </div>
+        <div class="tech-card">
+          <h3>匹配引擎</h3>
+          <p>同义词归一 + 主料加权；弱匹配自动"变通"，取最清简的古法兜底。</p>
+        </div>
+        <div class="tech-card">
+          <h3>文风生成</h3>
+          <p>三档引子 + 结构化半文白模板，离线即用，亦可接大模型润色。</p>
+        </div>
+        <div class="tech-card">
+          <h3>水墨图</h3>
+          <p>SVG 程序化生成，按食谱主色与配料参数化，离线可得。</p>
+        </div>
+        <div class="tech-card">
+          <h3>后端</h3>
+          <p>Flask <code>/api/cook</code>：离线兜底 + 大模型 / AI 绘图接入位。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block cta-block">
+      <a href="index.html" class="btn btn-primary btn-lg">去备席 →</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>知识库考据自《齐民要术》《随园食单》《本草纲目》及苏轼、张翰等文人笔记。半文半白之辞为今人演绎，仅供下厨与把玩。</p>
+    <p class="foot-sub">古人的深夜食堂 · 方案二 · 离线可用 · 可接入大模型与 AI 绘图</p>
+    <p class="foot-nav"><a href="welcome.html">关于本店</a> · <a href="sources.html">古籍课堂</a> · <a href="index.html">进入食堂</a> · <a href="quiz.html">美食家人格</a> · <a href="favorites.html">我的收藏</a></p>
+  </footer>
+  <div class="page-veil" aria-hidden="true"><div class="veil-seal">食</div></div>
+  <script src="js/anim.js"></script>
+</body>
+</html>
